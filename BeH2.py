@@ -1,0 +1,66 @@
+
+import vqe_methods_add_by_one_Harper_truncation
+import numpy
+import pickle
+
+
+
+
+PoolOfHope=['YYZZYXIZII', 'XXIIIZXYII', 'IZYYIZZZXY', 'YYZZIZYXII', 'YXIZXXZZII', 'IZXXZZZZXY', 'ZIYXIZXXII', 'XYIIXXYXXY', 'XXZZZZZIXY', 'ZYXXXIIZII', 'ZZYYYYXXXY', 'ZZIIIZXXXY', 'IIIZYYZIXY']
+PoolOfHope=['YYZZYXIZII', 'XXIIIZXYII', 'IZYYIZZZXY', 'YYZZIZYXII', 'YXIZXXZZII', 'IZXXZZZZXY', 'ZIYXIZXXII', 'IIYYZIIZXY', 'XYZIXXIZII', 'YYZIIZIIXY', 'ZXZZXIZZXY', 'XYIIXYYYXY', 'ZYYYZYZIXY']
+
+PoolOfHope=['IZXXXZZYIIII', 'YYZIZZIIZZXY', 'YYZZXZZYIZII', 'ZIXXZXZIYIII', 'XXZZIIZIIZXY', 'IXZXZXIZZIZY', 'XXIIZXZZYIII', 'ZXYZZZIIYIZY', 'ZXIXZXZZIZZY', 'XZIYZIZZYIZY', 'ZZZXXIYYZXZY', 'IXZXIZIIXIYI', 'ZZIYYZIXZZYI', 'IIZIIYXIXXII', 'XZXXZYZIZZII', 'XXYXIZZZZZII', 'YZIIIYZZZIXY']
+PoolOfHope=['IZXXIZZIXYII', 'YYZIZZIZZIXY', 'YYZZIZZZXYII', 'ZIXXYXZIZIII', 'XXZZIIZZIIXY', 'IXZXZXIIZZZY', 'XXIIYXZIZZII', 'ZXYZYZIIZIZY', 'ZXIXIXZZZZZY', 'XZIYYIZIZZZY', 'ZZZXZIYXXYZY', 'IXZXXZIIIIYI', 'ZZIYZZIZYXYI', 'IIZIXYXXIIII', 'XZXXZYZZZIII', 'XXYXZZZZIZII', 'YZIIZYZIIZXY']
+Resultat=[]
+
+
+for r in numpy.linspace(1, 2, num=11):
+    print (r)
+    geometry = "H 0 0 0; Be 0 0 {}; H 0 0 {}".format(r,2*r)
+    print(geometry)
+    vqe_methods_add_by_one_Harper_truncation.adapt_vqe(geometry,
+    	                  adapt_thresh    = 1e-8,                        #gradient threshold
+                          adapt_maxiter   = 400,                       #maximum number of ops                   
+                          Pool            = PoolOfHope,
+                          Resultat        = Resultat,
+                          bond_legth     = r
+                          ) 
+    
+    with open('Bond_length_dependence.BeH2_dissociation_curve_pickle_min_pool' , 'wb') as handle:
+        pickle.dump(Resultat, handle, protocol=pickle.HIGHEST_PROTOCOL)                        
+
+
+(0, 15)	(0.0010690225358093676+0j)
+(0, 51)	(0.015979631695337997+0j)
+(0, 60)	(0.015979631695338236+0j)
+(0, 195)	(-0.07485660508327767+0j)
+(0, 204)	(-0.07485660508327897+0j)
+(0, 240)	(-0.08191618756862055+0j)
+(0, 291)	(0.018754263995619237+0j)
+(0, 300)	(0.018754263995619712+0j)
+(0, 480)	(-0.05172861779088509+0j)
+(0, 531)	(-0.01875426399561931+0j)
+(0, 540)	(-0.018754263995619656+0j)
+(0, 720)	(0.051728617790883426+0j)
+(0, 771)	(0.0176356024356676+0j)
+(0, 780)	(0.017635602435668345+0j)
+(0, 816)	(-0.18597165014588765+0j)
+(0, 960)	(0.969332142469191+0j)
+
+
+(0, 15)	(-0.004338923235255441+0j)
+(0, 51)	(-0.004338923235255505+0j)
+(0, 60)	(-0.0021597557676180253+0j)
+(0, 195)	(0.03561717584341407+0j)
+(0, 204)	(0.06345637343851057+0j)
+(0, 240)	(0.06345637343851139+0j)
+(0, 270)	(-0.0059364653348714744+0j)
+(0, 306)	(-0.005936465334871438+0j)
+(0, 450)	(0.013593356885383349+0j)
+(0, 525)	(0.005936465334871633+0j)
+(0, 561)	(0.0059364653348718596+0j)
+(0, 705)	(-0.013593356885381744+0j)
+(0, 771)	(0.05418935598332212+0j)
+(0, 780)	(0.005658096231478518+0j)
+(0, 816)	(0.005658096231478062+0j)
+(0, 960)	(-0.993541462384442+0j)
