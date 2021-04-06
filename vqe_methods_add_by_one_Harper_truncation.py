@@ -43,7 +43,7 @@ def adapt_vqe(geometry,
     frozen_vir = 0
     
     try:
-        file = open("MolecularHamiltonian",'rb')
+        file = open('MolecularHamiltonians/MolecularHamiltonian_{}'.format(bond_legth),'rb')
         objectsFromFile = pickle.load(file)
         
         _0body_H = objectsFromFile[0][0]
@@ -67,7 +67,7 @@ def adapt_vqe(geometry,
         N_e = int(np.trace(_1rdm))
         #Use OpenFermion to build sparse matrix representations of JW-transformed operators:
         H, ref, N_qubits, S2, Sz, Nop = of_from_arrays(_0body_H, _1body_H, _2body_H, N_e)
-        with open('MolecularHamiltonian' , 'wb') as myHandle:
+        with open('MolecularHamiltonians/MolecularHamiltonian_{}'.format(bond_legth) , 'wb') as myHandle:
             pickle.dump(((_0body_H, _1body_H, _2body_H, _1rdm, hf_energy),(H, ref, N_qubits, S2, Sz, Nop)), myHandle, protocol=pickle.HIGHEST_PROTOCOL) 
     #, ref, N_qubits, S2, Sz, Nop)
     #H is the Hamiltonian, ref is the HF reference in the active space.  S2, S_z, and N_op are the S^2, S_z, and number operators if you happen to want them.
