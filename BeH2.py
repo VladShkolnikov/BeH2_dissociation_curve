@@ -14,7 +14,7 @@ Resultat=[]
 geometry = "H 0 0 0; Be 0 0 {}; H 0 0 {}".format(r,2*r)
 print(geometry)
 vqe_methods_add_by_one_Harper_truncation.adapt_vqe(geometry,
-	                  adapt_thresh    = 1e-8,                        #gradient threshold
+	                  adapt_thresh    = 1e-7,                        #gradient threshold
                       adapt_maxiter   = 400,                       #maximum number of ops                   
                       Pool            = PoolOfHope,
                       Resultat        = Resultat,
