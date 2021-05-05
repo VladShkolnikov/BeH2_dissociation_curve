@@ -158,17 +158,17 @@ def adapt_vqe(geometry,
             max_derivative=-math.inf
             trial_model = tUCCSD(hamiltonian, ansatz_mat, reference_ket, parameters)
             for op in range(n_ops):
-                for pos in range(len(parameters)+1):
-                    der=trial_model.derivative(parameters,pos,spmat_ops[op])
-                    #print(der)
-                    if der > max_derivative:
-                        max_derivative=der
-                        ansatz_ops_res=ansatz_ops.copy()
-                        ansatz_mat_res=ansatz_mat.copy()
-                        parameters_res=parameters.copy()
-                        ansatz_ops_res.insert(pos,Pool[op])
-                        ansatz_mat_res.insert(pos,spmat_ops[op])
-                        parameters_res.insert(pos,0)
+                pos=0
+                der=trial_model.derivative(parameters,pos,spmat_ops[op])
+                #print(der)
+                if der > max_derivative:
+                    max_derivative=der
+                    ansatz_ops_res=ansatz_ops.copy()
+                    ansatz_mat_res=ansatz_mat.copy()
+                    parameters_res=parameters.copy()
+                    ansatz_ops_res.insert(pos,Pool[op])
+                    ansatz_mat_res.insert(pos,spmat_ops[op])
+                    parameters_res.insert(pos,0)
                         
                         
                         
